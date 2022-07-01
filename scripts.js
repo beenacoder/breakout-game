@@ -101,6 +101,27 @@ function movePaddle() {
     }
 }
 
+//Move Ball on canvas
+function moveBall() {
+    ball.x += ball.dx;
+    ball.y += ball.dy
+
+    //Wall collision (x) and do a reverse
+    if(ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
+        ball.dx *= -1; // ball.dx = ball.dx * -1 (do a reverse)
+    }
+
+    //Wall collision (y) and do a reverse
+    if(ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
+        ball.dy *= -1; // ball.dy = ball.dy * -1 (do a reverse)
+    }
+
+    //Paddle collision
+    if(){
+    }
+
+}
+
 
 //Draw everything
 function draw() {
@@ -118,6 +139,9 @@ function draw() {
 //Update canvas drawing and animation
 function update(){
     movePaddle();
+    moveBall();
+
+
     //Draw everything
     draw();
     requestAnimationFrame(update);
