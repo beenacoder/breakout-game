@@ -117,8 +117,29 @@ function moveBall() {
     }
 
     //Paddle collision
-    if(){
+    if(
+        ball.x - ball.size > paddle.x && 
+        ball.x + ball.size < paddle.x + paddle.w && 
+        ball.y + ball.size > paddle.y
+        ) {
+        ball.dy = -ball.speed; //We do a reverse 
     }
+   
+    //Brick collision
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            if(brick.visible){
+                if(ball.x - ball.size > brick.x && // left brick side check
+                   ball.x + ball.size < brick.x + brick.w && // right brick side check
+                   ball.y + ball.size > brick.y && //top brick side check
+                   ball.y - ball.size < brick.y + brick.h // bottom brick side check 
+                ) {
+                    ball.dy *= -1; //Do a reverse (bounce off)
+                    brick.visible = false;
+                }
+            }
+        })
+    })
 
 }
 
@@ -174,6 +195,13 @@ document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
 
+
+// function getRndColor() {
+//     var r = 255*Math.random()|0,
+//         g = 255*Math.random()|0,
+//         b = 255*Math.random()|0;
+//     return 'rgb(' + r + ',' + g + ',' + b + ')';
+// }
 
 // Rules and close event handlers
 rulesBtn.addEventListener('click', () => {
