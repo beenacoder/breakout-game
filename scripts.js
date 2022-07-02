@@ -29,7 +29,6 @@ for(let i = 0; i < brickRowCount; i++){
     }
 }
 
-
 //Create paddle props
 const paddle = {
     x: canvas.width / 2 - 40,
@@ -125,7 +124,7 @@ function moveBall() {
         ball.dy = -ball.speed; //We do a reverse 
     }
    
-    //Brick collision
+//Brick collision
     bricks.forEach(column => {
         column.forEach(brick => {
             if(brick.visible){
